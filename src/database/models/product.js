@@ -22,13 +22,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'categories',
         through: 'CategoryProduct'
       });
-      Product.belongsToMany(modles.Size , {
+      Product.belongsToMany(models.Size , {
         as: "sizes",
         through: "SizeProduct"
-      });
-      Product.belongsToMany(modles.GenreModel , {
-        as: "genreModels",
-        through: "GenreModelProduct"
       });
       Product.belongsToMany(models.OrderProduct , {
         as: "orders",

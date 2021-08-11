@@ -233,7 +233,11 @@ Modelo CATEGORY
     }
 
 
+
+
+
 AHORA HAY QUE AGREGAR LAS CLAVES FORANEAS A LAS  MIGRACIONES
+
 
 MIGRACION PRODUCT
  userId: {
@@ -292,3 +296,9 @@ MIGRACION CATEGORYPRODUCT
 
 CREAR LA MIGRACION Y CREACION DE LAS TABLAS
 sequelize db:migrate
+
+
+
+Notas:
+Cuando hay una clave foranea, por ejemple: en la tabla de products brandID es FK la relacion es: 
+Product belongs to Brand |Y| Brand hasMany Product {foreingKey: "brnadId" , as : "products"}

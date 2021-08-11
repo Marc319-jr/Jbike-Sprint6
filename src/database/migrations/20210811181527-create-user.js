@@ -30,14 +30,16 @@ module.exports = {
           model: "addresses",
           key: "id"
         }
+        
       },
       rolId: {
         type: Sequelize.INTEGER,
         references:
         {
-          model: "roles",
+          model: "rols",
           key: "id"
         }
+        
       },
       genreId: {
         type: Sequelize.INTEGER,
@@ -46,6 +48,8 @@ module.exports = {
           model: "genres",
           key: "id"
         }
+        
+  
       },
       createdAt: {
         allowNull: false,
