@@ -1,4 +1,4 @@
-const models = require('../database/models')
+const {Category} = require('../database/models')
 
 const controller = {
     index: (req,res) => {
