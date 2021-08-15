@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       //belongsToMany
       Size.belongsToMany(models.Product , {
-        as: "products",
-        through: "SizeProduct"
+        as: "productBySize",
+        through: "sizeproducts"
       });
 
     }

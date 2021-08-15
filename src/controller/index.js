@@ -1,9 +1,14 @@
-const {Category} = require('../database/models')
+const {Product} = require('../database/models')
+
 
 const controller = {
     index: (req,res) => {
-        res.send("Hola")
+        Product.findAll({include: ['brand']})
+        .then(products  => {
+            return res.render('../src/views/index' , {'productos' : products})
+        })
     }
+    
 }
 
 

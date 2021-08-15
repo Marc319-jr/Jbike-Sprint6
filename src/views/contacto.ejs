@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') %>
+
+    <body>
+        <%- include('partials/headercat') %>
+
+        <section class = "creacion" >
+            <h1>Ingrese su info</h1>
+        <form class = "creacion-producto" method="POST" action="#" enctype="multipart/form-data">
+            <span>Ingrese su nombre y apellido</span>
+            <input type="text">
+            <span>Ingrese su email:</span>
+            <input type="text">
+            <span>Ingrese su numero de telefono:</span>
+            <input type="text">
+            <span>Ingrese su mensaje:</span>
+            <textarea></textarea>
+            <div class="botones-creacion">
+                <button type="submit">Enviar</button>
+            </div>
+
+
+
+        </form>
+        </section>
+
+
+    <%- include('partials/footer') %>
+    </body>
+
+
+
+</html>

@@ -1,0 +1,86 @@
+h2{
+    color: black;
+    text-align: start;
+    margin: 15px 30px;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    opacity: 75%;
+}
+
+.catalogoCategorias{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+
+
+.catalogoCategorias li a{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    list-style: none;
+    border-bottom: 2px solid rgb(240, 240, 240);
+    color: black;
+    font-style: normal;
+    text-decoration: none;
+}
+
+
+.catalogoCategorias li span{
+    font-size: 18px;
+}
+
+.catalogoCategorias li img{
+    display: none;
+}
+
+
+.productsAdmin{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.productsAdmin h2{
+    text-align: center;
+}
+
+.productsAdmin .botonesAdmin{
+    margin-bottom: 20px;
+
+}
+
+.productsAdmin .botonesAdmin .addButton{
+    background-color: darkred;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+}
+
+.productsAdmin .botonesAdmin .addButton a{
+    color: white;
+    text-decoration: none;
+}
+
+
+
+@media screen and (min-width:768px){
+    .catalogoCategorias li img{
+        display: flex;
+        border-radius: 10px;
+    }
+}
+
+
+@media screen and (min-width:1241px){
+
+
+
+}

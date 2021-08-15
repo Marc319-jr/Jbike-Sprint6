@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/headercat') %>
+    <section class = "creacion">
+            <h1>Crearcion de producto</h1>
+            <% if (locals.errors) { %>
+                <div class = "errors">
+                    <% for( let oneError in errors) { %>
+                        <span><%= errors[oneError].msg  %> </span>
+                        <br>   
+                    <% } %>
+                </div>
+                <% } %>
+            <form class = "creacion-producto" method="POST" action="/products/upload" enctype="multipart/form-data">
+
+                <span>Marca</span>
+                <p id = "errorMarca" class = "errorFront"></p>
+                <select name="brandId" class="marca" id = #marcaProducto>
+                    <option value ="no" name  = "vacio">Seleccione la marca</option>
+                    <% for(let i = 0;i<brands.length;i++ ) { %>
+                        <option value = "<%= brands[i].id %>">  <%= brands[i].name %>  </option>
+                    <% } %>
+                
+                </select>
+
+                <span>Categorias</span> <h6>para seleccionar varios precione CTRL</h6>
+                <p id = "errorRodado" class = "errorFront"></p>
+                <select name = "categorias" multiple>
+                    <% categorias.forEach(oneCategory => { %>
+                        <option value = "<%= oneCategory.id %>"> <%=oneCategory.name %> </option>
+                    <% }) %>
+                </select>
+
+                <span>Modelo</span>
+                <p id = "errorModelo" class = "errorFront"></p>
+                <input type = "text" name = "model" class = "modelo">
+                <span>Ingrese descripcion </span>
+                <p id = "desc1Error" class = "errorFront"></p>
+                <textarea name = "desc1" class = "desc1" placeholder="Ingrese texto aqui"></textarea>
+                <span>Ingrese descripcion bajo fotos</span>
+                <p id = "desc2Error" class = "errorFront"></p>
+                <textarea name = "desc2" placeholder="Ingrese texto aqui" class = "desc2"></textarea>
+                
+                <span>Coloque la foto principal</span>
+                <p id = "errorImagen" class = "errorFront"></p>
+                <input name = "image1" type = "file" class = "foto-principal" >
+                
+
+                <span>Rodados</span> <h6>para seleccionar varios precione CTRL</h6>
+                <p id = "errorRodado" class = "errorFront"></p>
+                <select name = "rodados" multiple>
+                    <% rodados.forEach(oneRodado => { %>
+                        <option value = "<%= oneRodado.id %>"> <%=oneRodado.name %> </option>
+                    <% }) %>
+                </select>
+               
+
+
+                <span>Colores</span> <h6>para seleccionar varios precione CTRL</h6>
+                <p id = "errorColor" class = "errorFront"></p>
+                <select name = "colors" multiple>
+                    <% colors.forEach(oneColor => { %>
+                        <option value = "<%= oneColor.id %>"> <%=oneColor.name %> </option>
+                    <% }) %>
+                </select>
+                
+                
+                
+                
+                <span>Stock</span>
+                <p id = "errorStock" class = "errorFront"></p>
+                <input type = "number" name = "stock"  class = "stock">
+                <span>Precio</span>
+                <p id = "errorPrecio" class = "errorFront"></p>
+                <input type = "number" name = "price" class = "precio">
+                <span>Descuento</span>
+                <p id = "errorDescuento" class = "errorFront"></p>
+                <input type = "number" name = "discount" class = "descuento">
+                <span>Cuotas</span>
+                <p id = "errorCuotas" class = "errorFront"></p>
+                <input type = "number" name = "cuotas" class = "cuotas">
+                <div class="botones-creacion">
+                <button type="submit">Crear</button>
+                <button type="reset">Resetear</button>
+                </div>
+            </form>
+    </section>
+    <script src  ="/js/alidacion-creacionProducto.js"></script>
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>

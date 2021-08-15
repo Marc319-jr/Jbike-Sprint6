@@ -11,25 +11,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       //belongsTo
-      Product.belongsTo(models.Brand);
+      Product.belongsTo(models.Brand , {as: 'brand'});
       
       //belongsToMany
       Product.belongsToMany(models.Color , {
         as: 'colors',
-        through: 'ColorProduct'
+        through: 'colorproducts'
       });
       Product.belongsToMany(models.Category , {
         as: 'categories',
-        through: 'CategoryProduct'
+        through: 'categoryproducts'
       });
       Product.belongsToMany(models.Size , {
         as: "sizes",
-        through: "SizeProduct"
+        through: "sizeproducts"
       });
       Product.belongsToMany(models.OrderProduct , {
         as: "orders",
-        through: "OrderProduct"
+        through: "orderproducts"
       });
+
+      //hasMany
+      Product.hasMany(models.OrderProduct , {
+        foreignKey: "productId",
+        as: "products"
+      })
 
     }
   };
@@ -46,7 +52,9 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.DECIMAL,
     discount: DataTypes.INTEGER,
     cuotas: DataTypes.INTEGER,
-    brandId: DataTypes.INTEGER
+    brandId: DataTypes.INTEGER,
+    
+
   }, {
     sequelize,
     modelName: 'Product',

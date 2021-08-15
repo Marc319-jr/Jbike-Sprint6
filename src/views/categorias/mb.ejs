@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+<body>
+    <%- include('../partials/headercat.ejs') %>
+
+        <div class="contenedorCategoria">
+      <div class = "filtors">
+        <div class = "ordenarPor">
+            <h3>Ordenar por: </h3>
+            <% filtros = ["Modelo" , "Precio" , "Rodado" , "Genero" , "Descuento" , "Ofertas"] %>
+            <% for( let i = 0; i < filtros.length; i++ ) { %>
+                <div class = "opcion">
+                <label for="check"><%= filtros[i]  %> </label>
+                <input type="checkbox" name = "check">
+                </div>
+            <% } %> 
+        </div>
+
+        <div class="entrePrecios">
+            <h3>Entre Precios: </h3>
+            <div class = "precios">
+                <input type="text" name = "minimo" placeholder="min">
+                <span> - </span>
+                <input type = "text" name = "maximo" placeholder="max">
+                <button type="submit">aplicar</button>
+            </div>
+        </div>
+
+      </div>
+    
+      <div class = "categoriaInfo">
+        <div class = "nombreCategoria">
+            <h1>Mountain Bike</h1>
+        </div>
+        <div class = "contenedorProductos">  
+            <% for( let i = 0; i < productos.length; i++ ) { %>
+                <a href="/products/product?productID=<%= productos[i].id %>">
+                    <article class="carta">
+                        <img src="../image/productsimages/<%= productos[i].imagen %>" width="100%" alt="IMG product">
+                        <div class="info">
+                            <span class="precio">$<%= productos[i].precio %></span>
+                            <span class="descripcion"> <%= productos[i].marca %> </span>           
+                        </div>
+                    </article>
+                </a>
+            <% } %>
+        </div>
+    </div>
+</div>
+    <%- include('../partials/footer') %>
+</body>
+
+
+</html>

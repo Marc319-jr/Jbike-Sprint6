@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       // belongsToMany
       Color.belongsToMany(models.Product ,{
-        as: "products",
-        through: "ColorProduct"
+        as: "productByColor",
+        through: "colorproducts"
       });
     }
   };

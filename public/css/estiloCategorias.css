@@ -1,0 +1,144 @@
+*{box-sizing: border-box;}
+
+
+body{
+    margin: 0px;
+    background-color: rgb(240, 240, 240);
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
+}
+
+body .contenedorCategoria{
+    display: flex;
+    flex-direction: row;
+    margin-top: 170px;
+    margin-bottom: 20px;
+
+
+}
+
+body .contenedorCategoria div{
+    margin-right: 15px;
+    margin-left: 15px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+
+body .contenedorCategoria .filtors{
+    display: flex;
+    flex-direction: column;
+    flex:40%
+
+}
+
+body .filtors h3{
+    text-align: center;
+    text-decoration: underline;
+    margin: 20px;
+    padding: 10px;
+    
+}
+
+body .filtors .ordenarPor{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+body .contenedorCategoria .filtors .ordenarPor label{
+   font-size: 18px;
+}
+
+body .contenedorCategoria .filtors .ordenarPor .opcion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    padding: 10px
+}
+
+
+body .contenedorCategoria .filtors .entrePrecios .precios{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+body .contenedorCategoria .filtors .entrePrecios .precios input{
+    max-width: 50px;
+    
+}
+
+body .contenedorCategoria .filtors .entrePrecios .precios button{
+    height: 30px;
+    width: 60px;
+    background-color: darkred;
+    border: none;
+    color: white;
+}
+
+body .categoriaInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+body a{
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+body .contenedorProductos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    padding: 20px;
+
+}
+
+body .categoriaInfo h1{
+    margin: 15px;
+    color: rgb(44, 38, 38);
+    text-align: center;
+    font-size: 56px;
+}
+
+body .contenedorProductos .carta{
+    width: 320px;
+}
+
+
+body .contenedorProductos  a{
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-flow: column;
+    border-radius: 6px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.3);
+    background-color: white;
+    cursor: pointer;
+    transition-property: box-shadow;
+    transition-duration: 0.3s;
+    margin: 10px;
+    max-width: 400px;
+}
+
+body .contenedorProductos article:hover{
+    box-shadow: 0px 0px 60px rgba(0,0,0,0.3);
+}
+
+
+
+body .contenedorProductos article .info{
+    display: flex;
+    flex-flow: column;
+    border-top: 1px solid rgb(230,230,230);
+    padding:25px;
+
+}
+ 
+

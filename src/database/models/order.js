@@ -19,8 +19,14 @@ module.exports = (sequelize, DataTypes) => {
       //belongsToMany
       Order.belongsToMany(models.Product , {
         as: "orders",
-        through: "OrderProduct"
+        through: "orderproducts"
       });
+
+      //has Many
+      Order.hasMany(models.OrderProduct , {
+        foreignKey: "orderId",
+        as: "orderproducts"
+      })
 
 
       
