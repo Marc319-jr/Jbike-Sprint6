@@ -31,7 +31,13 @@ module.exports = {
           key: "id"
         }
         
+
       },
+
+      image: {
+        type: Sequelize.STRING
+      },
+
       rolId: {
         type: Sequelize.INTEGER,
         references:

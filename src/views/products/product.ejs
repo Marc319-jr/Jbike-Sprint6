@@ -22,7 +22,6 @@
                 <h1 class = "precio"> <%= product.brand.name + " " + product.model %></h1>
                 <h2 class ="desc2">  <%= product.desc2 %> </h2>
                 <h3> <%= product.price %>$</h3>
-                <form action="" method="">
                     <div class="caracteristicas">
                         
                     </div>
@@ -31,16 +30,20 @@
                         <input type="text" value="<%= product.stock %>">
                         <span class="up"  onClick='increaseCount(event, this)'>+</span>
                     </div>
-
-                    <button class="product-botton" >Agregar al carrito</button>
-                    <button class="product-botton"><a href="/products/edit/<%=product.id%>">Editar</a></button>
+                    <h1 class="cuotas">Hasta <%= product.cuotas %> cuotas sin interes</h1>
 
 
+                    <form action ="/products/edit/<%=product.id%>" method="GET" >
+                        <button type="submit" class="product-botton">Editar</button>
+                    </form>
 
-                </form>
-                <h1 class="cuotas">Hasta <%= product.cuotas %> cuotas sin interes</h1>
-                <form action="/products/<%=product.id%>?_method=DELETE" method ="POST">
-                    <button class="product-botton" >Delete</button>
+        
+                <form action= "/products/activate/<%=product.id%>" method = "POST">
+                    <% if (product.activate == 1) { %>
+                        <button type="submit" class="product-botton">Disactivate</button>
+                    <% } else { %>
+                        <button type="submit" class="product-button">Actiavte</button>
+                        <% }  %>
                 </form>
 
 

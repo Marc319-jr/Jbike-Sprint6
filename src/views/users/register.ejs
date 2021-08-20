@@ -26,54 +26,82 @@
 
             
                 <a href="/">
-                    <img src="../image/Logos/Logophone.png" width = 130px>
+                    <img src="../image/Logos/Logophone.png" width = 100px>
                 </a>
                 <div class="ingreso">
     
                     <h3>Crear una cuenta</h3>
-                    <form action="/users/register" method="POST" enctype="multipart/form-data" class = "formRegister">
-                        <% if (locals.errores && errores.nombreUsuario) { %>
-                            <p class="errorBack"> <%= errores.nombreUsuario.msg  %> ! </p>
-                        <% } %>
+                    <form action="/users/create" method="POST"  class = "formRegister">
+
+
                         <div class = "inputs">
+
+                        <% if (locals.errores && errores.firstname) { %>
+                        <p class="errorFront"> <%= errores.firstname.msg  %> ! </p>
+                        <% } %>
                         <p id = "nombreError" class = "errorFront"></p>
-                        <input type="text" name="nombreUsuario" placeholder="Nombre y Apellido" value = "<%= locals.oldData ? oldData.nombreUsuario : null  %>" id="nombreUsuario" class ="input" >
-                        <% if (locals.errores && errores.imagen) { %>
-                            <p class="errorBack"> <%= errores.imagen.msg  %> ! </p>
+                        <input type="text" name="firstname" placeholder="Nombre" value ="<%= locals.oldData ? oldData.firstname : null  %>" id="nombreUsuario" class ="input" >
+                       
+                        <% if (locals.errores && errores.lastname) { %>
+                            <p class="errorFront"> <%= errores.lastname.msg  %> ! </p>
+                        <% } %>
+                        <p id = "apellidoError" class = "errorFront"></p>
+                        <input type="text" name="lastname" placeholder="Apellido" value ="<%= locals.oldData ? oldData.lastname : null  %>" id="apellidoUsuario" class ="input" >
+                       
+                        <% if (locals.errores && errores.phone) { %>
+                            <p class="errorFront"> <%= errores.phone.msg  %> ! </p>
+                            <% } %>
+                        <p id = "phoneError" class = "errorFront"></p>
+                        <input type="text" name = "phone" placeholder="Numero de telefono" value ="<%= locals.oldData ? oldData.phone : null %>" id = "telefono">
+                       
+
+                        <% if (locals.errores && errores.email) { %>
+                            <p class="errorFront"> <%= errores.email.msg  %> ! </p>
                         <% } %>
                         <p id = "emailError" class = "errorFront"></p>
-                        <input type="email" name="emailUsuario" placeholder="Correo electronico" class="input" id = "email"  >
-                        <span id = "errorEmail"></span>
-                        <% if (locals.errores && errores.emailUsuario) { %>
-                            <p class="errorBack"> <%= errores.emailUsuario.msg  %> ! </p>
-                        <% } %>
+                        <input type="email" name="email" placeholder="Correo electronico" value ="<%= locals.oldData ? oldData.email : null %>" class="input" id = "email"  >
+                      
+
+                        <% if (locals.errores && errores.password) { %>
+                            <p class="errorFront"> <%= errores.password.msg  %> ! </p>
+                        <% } %>   
                         <p id = "passError" class = "errorFront"></p>
-                        <input type="password" name="passwordUsuario" placeholder="Contraseña" class="input" id = "password"> 
-                        <span id = "errorPass"></span>
-                        <% if (locals.errores && errores.passwordUsuario) { %>
-                            <p class="errorBack"> <%= errores.passwordUsuario.msg  %> ! </p>
-                        <% } %>    
+                        <input type="password" name="password" placeholder="Contraseña" class="input" id = "password"> 
+ 
                         <p id = "confrimpassError" class = "errorFront"></p>
                         <input type="password" name = "confirmarPass" placeholder="Confirme la contaseña" class = "input" id ="passConfirm">
-                        <p id = "phoneError" class = "errorFront"></p>
-                        <input type="text" name = "telefono" placeholder="Numero de telefono" id = "telefono">
-                        <select name="genero" class="input" style = "margin-top: 10px; margin-bottom: -10px;">
-                            <option value ="" name  = "vacio">Seleccione el genero</option>
-                            <% let opciones = ['Hombre' , 'Mujer'] %>
-                            <% for(let i = 0;i<opciones.length;i++ ) { %>
-                                <option value = "<%= opciones[i] %>" <%= locals.oldData && (opciones[i] === oldData.genero) ? 'selected' : null %> name = "genero"> <%= opciones[i] %>  </option>
-                            <% } %>
                         
+
+                        <% if (locals.errores && errores.genre) { %>
+                            <p class="errorFront"> <%= errores.genre.msg  %> ! </p>
+                        <% } %>   
+                        <select name="genre" class="input" style = "margin-top: 8px; ">
+                            <option value ="" name  = "vacio">Seleccione el genero</option>
+                            <% for(const oneGenre of genres ) { %>
+                                <option value = "<%= oneGenre.id %>" <%= locals.oldData && (oneGenre.id == oldData.genre) ? 'selected' :null %> name = "genre"> <%= oneGenre.name %>  </option>
+                            <% } %>
                         </select>
+
+                        <br>
+
+                        <% if (locals.errores && errores.rol) { %>
+                            <p class="errorFront"> <%= errores.rol.msg  %> ! </p>
+                        <% } %>   
+                        <select name="rol" class="input" style = "margin-top: 20px; margin-bottom: -10px;">
+                            <option value ="" name  = "vacio">Seleccione el Rol</option>
+                            <% for(const oneRol of roles) { %>
+                                <option value = "<%= oneRol.id %>" <%= locals.oldData && (oneRol.id == oldData.rol) ? 'selected' :null %> name = "rol" > <%= oneRol.name %>  </option>
+                            <% } %>
+                        </select>
+
+
+
+
                     </div>
-  
-                    <% if (locals.errores && errores.genero) { %>
-                        <p class="errorBack"> <%= errores.genero.msg  %> ! </p>
-                    <% } %>
                     <br>
-                    <p id = "imageError" class = "errorFront"></p>
-                    <label for = "imagen">Ingrese su imagen de perfil</label>
-                    <input type="file" name = "imagen">
+  
+
+                
                     <div class="buttons">
                         <a href="/index"></a>   
                             <button type = "submit" class="login-botton">
@@ -87,9 +115,10 @@
         </div>
     </div>
     </div>
+    <script src = "/js/validacion-register.js"></script>
+
 
 </body>
-<script src = "/js/validacion-register.js"></script>
 
 
 </html>

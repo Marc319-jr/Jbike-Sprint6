@@ -27,7 +27,7 @@ app.use(session({secret: 'Shh, Its a secret',
 
 app.use(cookies());
 
-/*
+
 //middlwares
 
 const userloggedMiddleware = require('./middlewares/userloggedMiddleware');
@@ -35,7 +35,7 @@ const userloggedMiddleware = require('./middlewares/userloggedMiddleware');
 //Uso de middlewares
 
 app.use(userloggedMiddleware);
-*/
+
 
 
 //Config de engine y sistema de ruteo
@@ -45,10 +45,12 @@ app.set('view engine', 'ejs');
 //Los gerentes de ruteo
 const indexRouter = require('./routes/index');
 const productRouter = require('./routes/productRouter');
+const userRouter = require('./routes/userRouter');
 
 //llamado a rutas
 app.use('/' , indexRouter);
 app.use('/products', productRouter);
+app.use('/users' , userRouter);
 
 
 

@@ -16,6 +16,7 @@ const controller = {
         console.log(req.body)
         const _body = req.body;
         _body.image1 = req.file ? req.file.filename : '';
+        _body.activate = 1;
         Product.create(_body)
         .then(ProductStored => {
             ProductStored.addColors(req.body.colors)
@@ -38,22 +39,50 @@ const controller = {
     },
 
 
-    destroy: async (req,res) => {
-        let productId = req.params.id;
-        console.log("quiereo borrar al producto  " + productId);
-        await Product.findByPk(productId , {include: ['colors', 'sizes' , 'categories']})
-        await Product.destroy({ where: { id: productId } });
-        return res.redirect("/")
-        .catch(error => res.send(error))
-        /*
 
-        await Color.destroy({where: {productId : productId},force : true })
-        console.log("Borre al producto" + req.params.id);
-        return res.send("dale che")
+    //Como no logro borrar mientras el Admin puede acticvar y desactivar productos
+    activate: async (req,res) => {
+        let producto = await Product.findByPk(req.params.id);
+        if(producto.activate == 0)
+        {
+            producto.activate = 1;
+            console.log("Active");
+        }
+        else
+        {
+            producto.activate = 0;
+            console.log("Desactive");
+        }
+        Product.update({activate : producto.activate} , {where: {id : req.params.id}})
+        .then(result => {
+            return res.redirect(`/products/${req.params.id}`);
+        })
         .catch(error => res.send(error));
-        */
+    },
 
-    } 
+    //Vista de edicion
+    edit: async (req,res) => {
+        let colors = await Color.findAll();
+        let brands = await Brand.findAll();
+        let sizes = await Size.findAll();
+        let categories = await Category.findAll();
+        let product = await Product.findByPk(req.params.id ,{include: ['brand' , 'colors' , 'sizes' , 'categories']})
+        res.render('../src/views/products/edit' , {product:product ,brands : brands , colors:colors , 'rodados' : sizes , 'categorias' : categories})
+    },
+
+
+
+    //Ejecuccion de la edicion
+    editProdcut: (req,res) => {
+        let product = req.body;
+        product.image1 = req.file ? req.file.filename : req.body.oldImage;
+        Product.update(product , { where: {id : req.params.id} })
+        .then(result => {
+            return res.redirect(`/products/${req.params.id}`);
+        })
+        .catch(error => res.send(error));
+    }
+
 }
 
 

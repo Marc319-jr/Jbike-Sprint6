@@ -28,7 +28,7 @@
                 </select>
 
                 <span>Categorias</span> <h6>para seleccionar varios precione CTRL</h6>
-                <p id = "errorRodado" class = "errorFront"></p>
+                <p id = "errorCategoria" class = "errorFront"></p>
                 <select name = "categorias" multiple>
                     <% categorias.forEach(oneCategory => { %>
                         <option value = "<%= oneCategory.id %>"> <%=oneCategory.name %> </option>
@@ -89,7 +89,7 @@
                 </div>
             </form>
     </section>
-    <script src  ="/js/alidacion-creacionProducto.js"></script>
+    <script src  ="/js/validacion-creacionProducto.js"></script>
 
         <%- include('../partials/footer') %>
 </body>

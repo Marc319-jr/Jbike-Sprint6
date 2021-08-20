@@ -22,15 +22,18 @@ let fileUpload = multer({storage});
 router.get('/' , controller.show)
 router.get('/create' , controller.createProduct);
 router.get('/:id' ,controller.show);
+router.get('/edit/:id' , controller.edit);
 
 
 //POST
 router.post('/upload' ,fileUpload.single('image1'), controller.uploadProtuct);
+router.post('/activate/:id' , controller.activate);
 
-
+//PUT
+router.put('/:id' ,fileUpload.single('image1') ,controller.editProdcut)
 
 //DELTE
-router.delete('/:id' , controller.destroy)
+//router.delete('/:id' , controller.destroy)
 
 
 

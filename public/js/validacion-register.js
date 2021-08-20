@@ -3,21 +3,23 @@ window.addEventListener("load" , function(){
 
 //declaracion del objeto de errores vacio
 let errores = {
-	nombre: "El nombre no puede esta vacio",
+	nombre: "El nombre no puede estar vacio",
+	apellido: "El apellido no puede estar vacio",
 	email: "El email no puede estar vacio",
 	password : "La password no puede estar vacia",
 	confrimPass: "Las contraseñas deben ser iguales",
 	telefono: "El numero de telefono no debe estar vacio",
-	imagen: "Debes seleccionar una imagen"
+	//imagen: "Debes seleccionar una imagen"
 }
 
 let erroresVacio = {
 	nombre: "",
+	apellido: "",
 	email: "",
 	password : "",
 	confrimPass: "",
 	telefono: "",
-	imagen: ""
+	//imagen: ""
 }
 
 //expresiones para compara los campos
@@ -39,7 +41,7 @@ const genero = document.querySelector("select")
 
 validarNombre = function(e)
 {
-	if(e.target.value.includes(" ")  && expresiones.nombre.test(e.target.value))
+	if( expresiones.nombre.test(e.target.value))
 	{
 		console.log("nombre correcto");
 		document.querySelector("#nombreUsuario").style.border = "none"
@@ -62,14 +64,35 @@ validarNombre = function(e)
 		console.log(errores.nombre);
 
 	}
-	else
+
+
+}
+validarApellido = function(e)
+{
+	if(expresiones.nombre.test(e.target.value))
 	{
-		errores.nombre  = "El nombre debe tener apellido incluido"
-		document.querySelector("#nombreUsuario").style.border = "none"
-		document.querySelector("#nombreUsuario").style.outline = "2px solid red"
-		console.log(errores.nombre);
-		
-	}	
+		console.log("apellido correcto");
+		document.querySelector("#apellidoUsuario").style.border = "none"
+		document.querySelector("#apellidoUsuario").style.outline = "2px solid green"
+		errores.apellido = ""
+	}
+	else if(e.target.value == "")
+	{
+		errores.apellido = "El campo apellido no puede quedar vacio"
+		document.querySelector("#apellidoUsuario").style.border = "none"
+		document.querySelector("#apellidoUsuario").style.outline = "1px solid gray"
+		console.log(errores.apellido);
+	
+	}
+	else if(!expresiones.nombre.test(e.target.value) && e.target.value != "")
+	{
+		errores.apellido = "El apellido no debe tener numeros o #,$,%.."
+		document.querySelector("#apellidoUsuario").style.border = "none"
+		document.querySelector("#apellidoUsuario").style.outline = "2px solid red"
+		console.log(errores.apellido);
+
+	}
+
 
 }
 validarEmail = function(e)
@@ -122,14 +145,14 @@ validarPass = function(e)
 	}
 }
 confirmarPass = function(e){
-	if(e.target.value != inputs[2].value)
+	if(e.target.value != inputs[4].value)
 	{
 		errores.confrimPass = "las contraseñas tienen que ser iguales"
 		document.querySelector("#passConfirm").style.border = "none"
 		document.querySelector("#passConfirm").style.outline = "2px solid red"
 		console.log(errores.confrimPass);
 	}
-	else if(e.target.value == inputs[2].value && e.target.value != "")
+	else if(e.target.value == inputs[4].value && e.target.value != "")
 	{	
 		console.log("contraseñas matchean");
 		document.querySelector("#passConfirm").style.border = "none"
@@ -198,19 +221,25 @@ validarGenero = function()
 //Acto de validacion
 validarFormulario = (e) => {
 	switch(e.target.name){
-		case "nombreUsuario":
+		case "firstname":
 			var error = document.querySelector("#nombreError")
 			console.log("estoy validando el nombre");
 			validarNombre(e);
 			error.innerText = errores.nombre
 			break;
-		case "emailUsuario":
+		case "lastname":
+			var error = document.querySelector("#apellidoError")
+			console.log("estoy validando el apellido");
+			validarApellido(e);
+			error.innerText = errores.apellido
+			break;
+		case "email":
 			var error = document.querySelector("#emailError")
 			console.log("estoy validando el Email");
 			validarEmail(e);
 			error.innerText = errores.email
 			break;
-		case "passwordUsuario":
+		case "password":
 			var error = document.querySelector("#passError")
 			console.log("estoy Validando la pass");
 			validarPass(e);
@@ -222,7 +251,7 @@ validarFormulario = (e) => {
 			confirmarPass(e);
 			error.innerText = errores.confrimPass
 			break;
-		case "telefono":
+		case "phone":
 			var error = document.querySelector("#phoneError")
 			console.log("Estoy validando el numero de telefono");
 			validarTelefono(e);

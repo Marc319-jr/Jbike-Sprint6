@@ -6,16 +6,11 @@
 <body>
     <%- include('../partials/headercat') %>
 
-    <main>
-        <div class = "profile">
-        <img src = "../image/users/images/<%=user.imagen%>" width  ="220px">
-        <br>
-        <br>
-        <br>
-        <h1>Hola <%= user.nombreUsuario %> </h1>
-        <H1>Email: <%= user.emailUsuario %></H1>
-        </div>
-    </main>
+    <section class = "creacion">
+        <form class = "creacion-producto" method="POST">
+            <h1>Detalle usuario</h1>
+        </form>
+    </section>
 
     <%- include('../partials/footer') %>
 </body>

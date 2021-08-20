@@ -44,6 +44,9 @@ module.exports = {
       cuotas: {
         type: Sequelize.INTEGER
       },
+      activate: {
+        type: Sequelize.INTEGER
+      },
       brandId: {
         type: Sequelize.INTEGER,
         references:

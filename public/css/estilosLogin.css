@@ -33,7 +33,7 @@ body{
         max-width: 1000px;
     }
     .form-container img{
-        margin: 3em 0;
+        margin: 4em 0;
      }
     .buttons a{
         display: block;
@@ -130,7 +130,7 @@ display: flex;
     background-color: rgb(255, 255, 255);
 }
 .form-container img{
-    margin: 2em 0;
+    margin: 1.5em 0;
  }
 .buttons a{
     display: block;

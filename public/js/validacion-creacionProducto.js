@@ -169,7 +169,7 @@ validarImagen = function(e){
         errores.imagen = "La imagen tiene que se de tipo .jpg, .jpeg o .png"
     }
 }
-/*
+
 validarRodados = function(e){
     rodados = document.querySelector(".rodados")
     if(rodados.value == "")
@@ -191,7 +191,7 @@ validarRodados = function(e){
         errores.rodado = "Los rodadps deben ser ingresado separados por coma sin espacisos"
     }
 }
-
+/*
 validarColores = function(e){
     colores = document.querySelector(".colores");
     if(colores.value == "")
@@ -306,55 +306,37 @@ validarCuotas = function(e)
 //Validaciones de Inputs
 const validarInputs = (e) => {
     switch(e.target.name){
-        case "marcaProducto":
-            console.log("marca Producto");
-            validarMarca(e)
-            break;
-        case "modeloProducto":
+        case "model":
             var error = document.querySelector("#errorModelo")
             console.log("Modelo Producto");
             validarModelo(e);
             error.innerHTML = errores.modelo
             break;
-        case "imagen":
+        case "image1":
             var error = document.querySelector("#errorImagen")
             console.log("Imagen");
             validarImagen(e);
             error.innerHTML = errores.imagen
             break
-            /*
-        case "rodadosProducto":
-            var error = document.querySelector("#errorRodado")
-            console.log("Rodado Prudctos");
-            validarRodados(e);
-            error.innerHTML = errores.rodado
-            break
-        case "coloresProducto":
-            var error = document.querySelector("#errorColor")
-            console.log("Colores Producto");
-            validarColores(e);
-            error.innerHTML = errores.color
-            break
-            */
-        case "stockProducto":
+        case "stock":
             var error = document.querySelector("#errorStock")
             console.log("stock Productos");
             validarStock(e)
             error.innerHTML = errores.stock
             break
-        case "precioProducto":
+        case "price":
             var error = document.querySelector("#errorPrecio")
             console.log("Precio");
             validarPrecio(e)
             error.innerHTML = errores.precio
             break
-        case "descuentoProducto":
+        case "discount":
             var error = document.querySelector("#errorDescuento")
             console.log("Descuento");
             validarDescuento(e);
             error.innerHTML = errores.descuento
             break
-        case "cuotasProducto":
+        case "cuotas":
             var error = document.querySelector("#errorCuotas")
             console.log("Cuotas");
             validarCuotas(e);

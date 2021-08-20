@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../partials/head') %>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css ">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../css/estiloindex.css">
+        <link rel="stylesheet" href="../../css/catalogo.css">
+        <link rel="stylesheet" href="../../css/estiloCategorias.css">
+        <link rel="stylesheet" href="../../css/contacto.css">
+    
+    
+        <title>JBike</title>
+    
+    </head>
 
 <body>
     <header>
@@ -11,16 +27,19 @@
             <div class="top">
                 <i class="fas fa-bars"></i>
                 <div class="logo2">
-                    <a href="/"><img class="logo2" src="../../image/Logos/Logophone.png" width="200px"></a>
+                    <a href="/"><img class="logo2" src="../image/Logos/Logophone.png" width="200px"></a>
                     
                 </div>
+                <div class="logo1">
+                    <a href = "/"> <img class="logo1" src="../image/Logos/Logo.png" width="160px" height="auto"></a>
+                 </div>
                 <i class="fas fa-search"></i>
     
                 <ul class="mainmenu">
-                    <li class="hvr-hang"><a href="#">ESHOP</a></li>
+                    <li class="hvr-hang"><a href="/products/catalogo">CATEGORIAS</a></li>             
                     <li class="hvr-hang"><a href="#">OFERTAS</a></li>
                     <li class="hvr-hang"><a href="#">TU PROPIA AVENTURA</a></li>
-                    <li class="hvr-hang"><a href="#">CONTACTO</a></li>
+                    <li class="hvr-hang"><a href="/contacto">CONTACTO</a></li>
                     <li class="hvr-hang"><a href="#">NOSOTROS</a></li>
                     <li class="hvr-hang"><a href="#">MARCAS</a></li>
                 </ul>
@@ -30,16 +49,20 @@
             <div class="low">
     
                 <div class="logo1">
-                    <a href="/"><img class="logo2" src="../../image/Logos/Logo.png" width="200px"></a>
-
+                   <a href = "/"> <img class="logo1" src="../../image/Logos/Logo.png" width="160px" height="auto" alt = "logo"></a>
                 </div>
                 <form class="search-bar">
                     <input type="text" placeholder="Buscar producto">
                     <i class="fas fa-search"></i>
                 </form>
     
-                <div class="user ">
-                    <a href= "../users/login"><i class="fas fa-user hvr-bounce-out"></i></a>
+                <div class="user " style = "align-items: center; justify-content: center;">
+                    <% if (locals.isLogged) { %>
+                        <a href= "../users/profile"> <h2 style="color: black; ">Hola</h2> </a>
+                        <a href  = "../users/logout" style = "margin-top: 50px;"><i class="fas fa-sign-out-alt"></i></a>
+                        <% } else { %>      
+                    <a href= "./users/login"><i class="fas fa-user hvr-bounce-out"></i></a>
+                    <% } %>
                     <a href = "../products/carrito"><i class="fas fa-shopping-cart hvr-bounce-out"></i></a>
                 </div>
             </div>
@@ -72,37 +95,110 @@
     </header>
     <section class = "creacion">
             <h1>Edicion de producto</h1>
-            <form class = "creacion-producto" method="POST" action="/products/<%=product.id%>?_method=PUT" enctype="multipart/form-data">
-                <span>Marca</span>
-                <input type = "text" name = "marcaProducto"  value="<%= product.marca %>">
-                <span>Modelo</span>
-                <input type = "text" name = "modeloProducto"  value="<%= product.modelo %>"">
-                <span>Ingrese descripcion bajo modelo</span>
-                <textarea name = "desc1"><%= product.desc1 %></textarea>
-                <span>Ingrese descripcion bajo fotos</span>
-                <textarea name = "desc2"><%= product.desc2 %></textarea>
-                <span>Coloque la foto principal</span>
-                <input name = "imagen" type = "file" class = "foto-principal" >
-                <span>Rodados</span>
-                <input type = "text" name = "rodadosProducto" value="<%= product.rodados %>">
-                <span>Colores</span>
-                <input type = "text" name = "coloresProducto" value="<%= product.colores %>">
-                <span>Stock</span>
-                <input type = "number" name = "stockProducto" value="<%= product.stock %>" >
-                <span>Precio</span>
-                <input type = "number" name = "precioProducto" value="<%= product.precio %>">
-                <span>Descuento</span>
-                <input type = "number" name = "descuentoProducto" value="<%= product.descuento %>">
-                <span>Cuotas</span>
-                <input type = "number" name = "cuotasProducto" value="<%= product.cuotas %>">
+            <% if (locals.errors) { %>
+                <div class = "errors">
+                    <% for( let oneError in errors) { %>
+                        <span><%= errors[oneError].msg  %> </span>
+                        <br>   
+                    <% } %>
+                </div>
+                <% } %>
+            <form class = "creacion-producto" method="POST" action="/products/<%= product.id %>?_method=PUT" enctype="multipart/form-data">
 
+                <span>Marca</span>
+                <p id = "errorMarca" class = "errorFront"></p>
+                <select name="brandId" class="marca" id = #marcaProducto>
+                    <option value ="<%= product.brand.id %>" name  = "vacio"> <%= product.brand.name  %> </option>
+                    <% for(let i = 0;i<brands.length;i++ ) { %>
+                        <option value = "<%= brands[i].id %>">  <%= brands[i].name %>  </option>
+                    <% } %>
+                
+                </select>
+
+                <span>Categorias</span> <h6>para seleccionar varios precione CTRL</h6>
+                <p id = "errorCategoria" class = "errorFront"></p>
+                <select name = "categorias" multiple>
+                    <option value = "no" style = "font-weight: 600;"> Las opciones anteriores: </option>
+                    <% product.categories.forEach(oneCategory => { %>
+                        <option value = "<%= oneCategory.id %>"  > <%=oneCategory.name %> </option>
+                    <% }) %>
+                        <option value = "no" style = "font-weight: 600;"> Seleccione Nuevas categorias </option>
+                        <% categorias.forEach(oneCategory => { %>
+                            <option value = "<%= oneCategory.id %>"> <%=oneCategory.name %> </option>
+                        <% }) %>
+                </select>
+
+                <span>Modelo</span>
+                <p id = "errorModelo" class = "errorFront"></p>
+                <input type = "text" name = "model" class = "modelo" value = "<%= product.model  %> ">
+                <span>Ingrese descripcion </span>
+                <p id = "desc1Error" class = "errorFront"></p>
+                <textarea name = "desc1" class = "desc1" placeholder= "<%= product.desc1%>" value= "<%= product.desc1%>"><%= product.desc1%></textarea>
+                <span>Ingrese descripcion bajo fotos</span>
+                <p id = "desc2Error" class = "errorFront"></p>
+                <textarea name = "desc2"  placeholder= "<%= product.desc2%>" class = "desc2" value= "<%= product.desc2%>"><%= product.desc2%></textarea>
+                
+                <span>Coloque la foto principal</span>
+                <p id = "errorImagen" class = "errorFront"></p>
+                <input name = "oldImage" type = "hidden" class = "foto-principal" value = "<%= product.image1 %>">
+                <input name = "image1" type = "file" class = "foto-principal">
+
+                
+         
+                
+
+                <span>Rodados</span> <h6>para seleccionar varios precione CTRL</h6>
+                <p id = "errorRodado" class = "errorFront"></p>
+                <select name = "rodados" multiple>
+                    <option value = "no" style = "font-weight: 600;"> Las opciones anteriores: </option>
+                    <% product.sizes.forEach(oneRodado => { %>
+                        <option value = "<%= oneRodado.id %>"> <%=oneRodado.name %> </option>
+                    <% }) %>
+                    <option value = "no" style = "font-weight: 600;"> Seleccione nuevos rodados </option>
+                    <% rodados.forEach(oneRodado => { %>
+                            <option value = "<%= oneRodado.id %>"> <%=oneRodado.name %> </option>
+                        <% }) %>
+                </select>
+               
+
+
+                <span>Colores</span> <h6>para seleccionar varios precione CTRL</h6>
+                <p id = "errorColor" class = "errorFront"></p>
+                <select name = "colors" multiple>
+                    <option value = "no" style = "font-weight: 600;"> Las opciones anteriores: </option>
+                    <% product.colors.forEach(oneColor => { %>
+                        <option value = "<%= oneColor.id %>"> <%=oneColor.name %> </option>
+                    <% }) %>
+                    <option value = "no" style = "font-weight: 600;"> Seleccione Nuevos colores </option>
+                    <% colors.forEach(oneColor => { %>
+                            <option value = "<%= oneColor.id %>"> <%=oneColor.name %> </option>
+                        <% }) %>
+
+                        
+                </select>
+                
+                
+                
+                
+                <span>Stock</span>
+                <p id = "errorStock" class = "errorFront"></p>
+                <input type = "number" name = "stock"  class = "stock" value = "<%= product.stock  %>">
+                <span>Precio</span>
+                <p id = "errorPrecio" class = "errorFront"></p>
+                <input type = "number" name = "price" class = "precio" value = "<%= product.price  %>">
+                <span>Descuento</span>
+                <p id = "errorDescuento" class = "errorFront"></p>
+                <input type = "number" name = "discount" class = "descuento" value = "<%= product.discount  %>">
+                <span>Cuotas</span>
+                <p id = "errorCuotas" class = "errorFront"></p>
+                <input type = "number" name = "cuotas" class = "cuotas" value = "<%= product.cuotas  %>">
                 <div class="botones-creacion">
                 <button type="submit">Editar</button>
                 <button type="reset">Resetear</button>
                 </div>
             </form>
-           
     </section>
+    <script src  ="/js/validacion-edicionProducto.js"></script>
 
         <%- include('../partials/footer') %>
 </body>
