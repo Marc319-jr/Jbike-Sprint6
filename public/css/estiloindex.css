@@ -223,17 +223,6 @@ header .header-banner .contenedor div{
 
 @media screen and (min-width:1242px)
 {
-header .top-header .top .logo2{
-    display:none;
-}
-
-header .top-header .top .logo1
-{
-    display: none;
-    margin-top: 5px;
-    width: px;
-}
-}
 
     body{
         margin: 0;
@@ -271,6 +260,14 @@ header .top-header .top .logo1
         margin: 0;
         border-left: 1px solid black;
         opacity: 90%;
+    }
+
+    header .top-header .low .user{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        
     }
 
 
@@ -403,7 +400,9 @@ header .top-header .top .logo1
 
 
 
-
+header .top-header .top .logo2{
+    display:none;
+}
 
 
 header .top-header .low{
@@ -453,10 +452,11 @@ header .top-header .low form input{
 
 
 
-
+}
 
 
 /***************************fin style header**********************************/
+
 
 
 /***************************style productos******************/
