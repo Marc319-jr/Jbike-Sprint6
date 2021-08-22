@@ -7,9 +7,59 @@
     <%- include('../partials/headercat') %>
 
     <section class = "creacion">
-        <form class = "creacion-producto" method="POST">
+        <div class = "creacion-producto" >
+
             <h1>Detalle usuario</h1>
-        </form>
+            <div class = "infoUser">
+                <% if (userLogged.image == "") { %>
+                    <img id = "userImage" src = "/image/users/default.png" width="100px">
+                <% }  else { %>
+                    <img id = "userImage" src = "/image/users/<%= userLogged.image %>  width="100px">
+                    <% } %>
+
+
+                <h2 class = "detailUser">Nombre: <%= userLogged.firstname %> <%= userLogged.lastname %> </h2>
+                <h2 class = "detailUser">Email: <%= userLogged.email %> </h2>
+                <h2 class = "detailUser">Telefono: +<%= userLogged.phone  %> </h2>
+                <% if (userLogged.image == "") { %>
+                    <h1>
+                        Complete la informacion que falta
+                    </h1>
+                <form method="POST" action="/users/profile/upload/<%=userLogged.id%>" enctype="multipart/form-data">
+                    <label for = "image">Inserte imagen de perfil</label>
+                    <input type="file" name = "image">
+                    <h2 style="text-align: center; align-self: center;">Direccion de envio</h2>
+                    <label for = "street">Calle:</label>
+                    <input type="text" name = "street">
+                    <label for = "number">Numero de calle:</label>
+                    <input type="text" name = "number">
+                    <label for = "apt">Numero de apt:</label>
+                    <input type="text" name = "apt">
+                    <label for = "city">Ciudad:</label>
+                    <input type="text" name = "city">
+                    <label for = "country">Pais:</label>
+                    <input type="text" name = "country">
+                    <label for = "zipcode">Codigo postal:</label>
+                    <input type="text" name = "zipcode">
+                    
+                    <button type="submit">Insertar info</button>
+
+                </form>
+                 
+                <% } else { %>
+                <h2 class = "detailUser">Direccion: <%= userLogged.addressId %></h2>
+                <div class = "centrado">
+                <a href = ""><button>Editar</button></a>
+                <a href = ""><button>Borrar</button></a>
+                </div>
+
+                    <% } %>
+
+
+
+
+            </div>
+        </div>
     </section>
 
     <%- include('../partials/footer') %>

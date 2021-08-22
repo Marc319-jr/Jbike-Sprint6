@@ -23,6 +23,30 @@ const controller = {
 
     },
 
+    profileInfo: (req,res) => {
+        let id = req.params.id;
+        let address = {
+            street: req.body.street,
+            number: req.body.number,
+            apt: req.body.apt,
+            city: req.body.city,
+            country: req.body.country,
+            zipcode: req.body.zipcode
+        };
+        let image = req.file ? req.file.filename : null;
+        let info = {
+            image,
+            address
+        };
+        db.User.update({image : info.image } ,{where : {id :id}} , {include : ["address"]})
+        .then(userStored => {
+            userStored.addAddress(info.address)
+
+            return res.redirect("/users/profile/");
+        })
+        .catch(error => res.send(error));
+    },
+
 
     //CRUD
 

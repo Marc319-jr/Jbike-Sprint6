@@ -245,10 +245,6 @@ header .header-banner .contenedor div{
         margin-top: 170px;
     }
 
-   header .top-header .low .user a i {
-       color: black;
-       opacity: 90%;
-   }
 
 
 
@@ -265,10 +261,44 @@ header .header-banner .contenedor div{
     header .top-header .low .user{
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
         align-items: center;
-        
+        justify-content: space-around;
+        font-size: 30px;
+        color: black;
+        opacity: 85%; 
     }
+    header .top-header .low .user p{
+        margin: 0px 20px;
+        margin-top : 10px;
+        font-size: 20px;
+
+    }
+
+    header .top-header .low .user a i {
+        color: black;
+        opacity: 90%;
+        align-self: center;
+    }
+
+    #iuser{
+        margin-top: 15px;
+    }
+ 
+
+
+
+
+    /*
+    header .top-header .low .user{
+        font-size: 30px;
+        align-self: center;
+        color: black;
+        position: relative;
+        right: 10px;
+        opacity: 85%;
+        bottom: 3px;
+    }
+    */
 
 
     header .top-header .top{
@@ -301,6 +331,7 @@ header .header-banner .contenedor div{
 
     header .top-header .logo1 img{
         width: 240px;
+        margin-top: 9px;
     }
    
     
@@ -415,15 +446,7 @@ header .top-header .low{
 }
 
 
-header .top-header .low .user{
-    font-size: 30px;
-    align-self: center;
-    color: black;
-    position: relative;
-    right: 10px;
-    opacity: 85%;
-    bottom: 3px;
-}
+
 
 
 header .top-header .low form{
@@ -629,6 +652,8 @@ body .categorias h3{
 @media screen and (min-width:768px)
 {
 
+  
+
 
 
     body .productos{
@@ -753,7 +778,7 @@ body .productos .carusel .articulos{
    
     display: flex;
     flex-direction: row;
-    flex-flow: row;
+    flex-flow: wrap;
     justify-content: space-around;
 }
 
@@ -770,7 +795,8 @@ body .productos  a{
     transition-property: box-shadow;
     transition-duration: 0.3s;
     margin: 10px;
-    max-width: 400px;
+    max-width: 250px;
+    
 }
 
 body .productos article:hover{
@@ -1517,14 +1543,16 @@ body .carrito .contenedor-productos{
 
 /*********************************creacion producto***************************/
 
+
+
 body .creacion{ 
-    margin: 30px auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 30px 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-    padding: 20px;
+    padding: 10px;
     max-width: 800px;
 
 }
@@ -1578,8 +1606,9 @@ body .creacion .creacion-producto .botones-creacion button{
 @media screen and (min-width:768px)
  {
     body .creacion{
-        margin-top: 60px;
-        margin-bottom: 60px;
+        margin: 0px auto;
+        margin-top: 80px;
+        margin-bottom: 80px;
     }
 
     
@@ -1588,6 +1617,7 @@ body .creacion .creacion-producto .botones-creacion button{
 
 @media screen and (min-width:1241px){
     body .creacion{
+        margin: 0px auto;
         margin-top: 180px;
         margin-bottom: 100px;
 

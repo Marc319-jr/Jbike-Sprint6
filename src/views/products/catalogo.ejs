@@ -83,13 +83,13 @@
             <br>
             <br>
             <br>
-            <% if (locals.isLogged && locals.userLogged.rol == "admin") { %>
+            <% if (locals.isLogged && locals.userLogged.rolId == 1 || locals.isLogged && locals.userLogged.rolId == 2 ) { %>
             <div class = "productsAdmin">
                 <h2>Bienvenidos Administrador</h2>
                 <section class  ="botonesAdmin">
-                <button class = "addButton"><a href ="/products/crear">Agregar Producto</a></button>
-                <button class = "addButton"><a href ="#">Agregar Categorias</a></button>
-                <button class = "addButton"><a href ="#">Agregar Editar productos</a></button>
+                <a  href ="/products/create"><button class = "addButton">Agregar Producto</button></a>
+                <a  href ="#"><button class = "addButton">Agregar Categoria</button></a>
+                <a  href ="#"><button class = "addButton">Editar</button></a>
                 </section>
             </div>
 

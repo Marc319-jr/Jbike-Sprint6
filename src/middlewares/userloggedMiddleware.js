@@ -21,6 +21,8 @@ const { User } = require('../database/models');
         res.locals.userLogged = req.session.userLogged
         console.log("El usuaio logeado es: ");
         console.log(res.locals.userLogged.email);
+
+
     }
     else{
     console.log("Pase por middleware de aplicacion y nadie esta logeadi");

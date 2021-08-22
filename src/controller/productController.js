@@ -1,3 +1,4 @@
+const db = require('../database/models');
 const {Product , Brand , Color , Size , Category  } = require('../database/models');
 
 const controller = {
@@ -81,6 +82,13 @@ const controller = {
             return res.redirect(`/products/${req.params.id}`);
         })
         .catch(error => res.send(error));
+    },
+
+
+
+    catalogo: async (req,res) => {
+        let categorias = await Category.findAll();
+        return res.render('../src/views/products/catalogo.ejs' , {categorias: categorias})   
     }
 
 }

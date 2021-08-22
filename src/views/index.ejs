@@ -36,6 +36,38 @@
                 </div>
                 </div>
         </section>
+
+        <section class="productos">
+
+            <div class="carusel">
+                <div class="titulo">
+                    <span class="hvr-hang">mas vendidos </span>
+                </div>
+                <% if(productos.length == 0 || productos == undefined ) { %> 
+                    <div class = "empty">
+                    <h1>Aun no hay productos en la base</h1>
+                    </div>
+                <% } else { %>
+
+                <% productos.forEach(product => { %>
+                    <div class="articulos">
+                        <a href="/products/<%= product.id %>">
+                            <article class="carta">
+                                <img src="../image/productsimages/<%= product.image1 %>" width="100%" alt="IMG product">
+                                <div class="info">
+                                    <span class="precio">$<%= product.price %></span>
+                                    <span class="descripcion"> <%= product.brand.name %> </span>           
+                                </div>
+                            </article>
+                        </a>
+
+                <% }) %>       
+                    <% } %>
+
+
+                </div>
+                </div>
+        </section>
         
 
 

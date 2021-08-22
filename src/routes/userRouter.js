@@ -16,7 +16,7 @@ const validator = require('../middlewares/userValidator');
 
 const storage = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null,path.join(__dirname, '../../public/image/users/images'))
+        cb(null,path.join(__dirname, '../../public/image/users'))
     },
     filename: (req,file,callback) => {
         const newFileName = 'usuario-' + Date.now() + path.extname(file.originalname);
@@ -35,6 +35,7 @@ router.get('/login' , guestMiddleware, controller.login);
 //POST
 router.post('/create',validator, controller.create);
 router.post('/loginProcess' , controller.processLogin);
+router.post('/profile/upload/:id' , fileUpload.single('image') , controller.profileInfo);
 
 
 
