@@ -27,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
 
 
 
+
+
       // hasMany
       User.hasMany(models.Order , {
         foreignKey: "userId",

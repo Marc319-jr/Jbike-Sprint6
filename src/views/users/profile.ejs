@@ -11,23 +11,24 @@
 
             <h1>Detalle usuario</h1>
             <div class = "infoUser">
-                <% if (userLogged.image == "") { %>
+                <% if (user.image == null) { %>
                     <img id = "userImage" src = "/image/users/default.png" width="100px">
                 <% }  else { %>
-                    <img id = "userImage" src = "/image/users/<%= userLogged.image %>  width="100px">
+                    <img id = "userImage" src = "/image/users/<%=user.image%>"  width= "300px">
                     <% } %>
 
 
-                <h2 class = "detailUser">Nombre: <%= userLogged.firstname %> <%= userLogged.lastname %> </h2>
-                <h2 class = "detailUser">Email: <%= userLogged.email %> </h2>
-                <h2 class = "detailUser">Telefono: +<%= userLogged.phone  %> </h2>
-                <% if (userLogged.image == "") { %>
+                <h2 class = "detailUser">Nombre: <%= user.firstname %> <%= user.lastname %> </h2>
+                <h2 class = "detailUser">Email: <%= user.email %> </h2>
+                <h2 class = "detailUser">Telefono: +<%= user.phone  %> </h2>
+                <% if (user.image == null) { %>
                     <h1>
                         Complete la informacion que falta
                     </h1>
-                <form method="POST" action="/users/profile/upload/<%=userLogged.id%>" enctype="multipart/form-data">
+                <form method="POST" action="/users/profile/upload/<%=user.id%>" enctype="multipart/form-data">
                     <label for = "image">Inserte imagen de perfil</label>
                     <input type="file" name = "image">
+                    <!--
                     <h2 style="text-align: center; align-self: center;">Direccion de envio</h2>
                     <label for = "street">Calle:</label>
                     <input type="text" name = "street">
@@ -41,17 +42,22 @@
                     <input type="text" name = "country">
                     <label for = "zipcode">Codigo postal:</label>
                     <input type="text" name = "zipcode">
+                    -->
                     
                     <button type="submit">Insertar info</button>
 
                 </form>
                  
                 <% } else { %>
-                <h2 class = "detailUser">Direccion: <%= userLogged.addressId %></h2>
                 <div class = "centrado">
-                <a href = ""><button>Editar</button></a>
-                <a href = ""><button>Borrar</button></a>
+                <a href = "/users/edit"><button>Editar</button></a>
                 </div>
+
+
+                
+                <form method="POST" action="/users/delete/<%=user.id%>?_method=DELETE">
+                    <button type="submit">!Delete!</button>
+                </form>
 
                     <% } %>
 

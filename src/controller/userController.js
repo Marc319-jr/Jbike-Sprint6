@@ -23,7 +23,7 @@ const controller = {
 
     },
 
-    profileInfo: (req,res) => {
+    profileInfo: async (req,res) => {
         let id = req.params.id;
         let address = {
             street: req.body.street,
@@ -38,19 +38,31 @@ const controller = {
             image,
             address
         };
-        db.User.update({image : info.image } ,{where : {id :id}} , {include : ["address"]})
-        .then(userStored => {
-            userStored.addAddress(info.address)
-
-            return res.redirect("/users/profile/");
+        let user = await db.User.findByPk(id, {include : ["address"]})
+        db.User.update({image: info.image} , {where: {id:id}})
+        .then(result => {
+            return res.redirect('/' )
         })
         .catch(error => res.send(error));
+    
+    },
+
+    edit: (req,res) => {
+        res.render('../src/views/users/edit.ejs' , {'user' : req.session.userLogged})
     },
 
 
-    //CRUD
+    update: async (req,res) => {
+        let user = req.body;
+        user.image = req.file ? req.file.filename : req.body.oldImage
+        db.User.update(user , {where: {id: req.params.id}})
+        .then(respond => {
+            res.locals.userLogged = user;
+            return  res.redirect("/users/profile")
+        })
+    },
 
-
+ 
     create: async (req,res) => {
         const resultValidation = validationResult(req);
         let genres = await db.Genre.findAll();
@@ -113,11 +125,11 @@ const controller = {
         res.redirect('/');
     },
 
-    update: (req,res) => {
 
-    },
+    destroy: async (req,res) => {
+        await db.User.destroy({where: {id: req.params.id}})
+        res.redirect("/users/logout")
 
-    destroy: (req,res) => {
 
     }
 

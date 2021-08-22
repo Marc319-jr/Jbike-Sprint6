@@ -38,3 +38,11 @@ body .infoUser .centrado{
 body .infoUser .centrado button {
     margin: 10px;
 }
+
+
+/*edit*/
+
+.infoUser p{
+    margin-left: 10px;
+    margin-bottom: -5px;
+}

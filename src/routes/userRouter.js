@@ -30,6 +30,7 @@ router.get('/logout' , controller.logout);
 router.get('/profile' , loggedMiddleware, controller.profile);
 router.get('/register' ,guestMiddleware , controller.register);
 router.get('/login' , guestMiddleware, controller.login);
+router.get('/edit' , controller.edit)
 
 
 //POST
@@ -37,10 +38,14 @@ router.post('/create',validator, controller.create);
 router.post('/loginProcess' , controller.processLogin);
 router.post('/profile/upload/:id' , fileUpload.single('image') , controller.profileInfo);
 
+//PUT
+
+router.put('/update/:id' , fileUpload.single('image') ,controller.update)
+
 
 
 //DELETE
-
+router.delete('/delete/:id' , controller.destroy)
 
 
 module.exports = router;

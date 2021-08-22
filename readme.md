@@ -17,3 +17,13 @@ links para referencia de tienda:
     https://rodarelectric.com/productos/time/?gclid=CjwKCAjw9MuCBhBUEiwAbDZ-7jDApBbNCNCy1lClaa1t6swo6aoT3W4wSZQ80BEveNWFjN3FDzIaNRoCYG4QAvD_BwE
 
 
+
+
+Faltaria para la entrega!!
+1. Destroy de producto
+
+
+Preugntas para los profes:
+1. Como Borrar un producto?
+2. Como agregarle y editar una direccion de un usuario?
+

@@ -7,7 +7,7 @@ const { User } = require('../database/models');
     let emailInCookie = req.cookies.usuarioCookie;
     if(emailInCookie)
     {
-     userFromCookie = await User.findOne({where: {email: emailInCookie} })
+     userFromCookie = await User.findOne({where: {email: emailInCookie}} , {include: ['address']} )
     }
 
     if(userFromCookie)
