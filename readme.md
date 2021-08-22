@@ -20,7 +20,7 @@ links para referencia de tienda:
 
 
 Faltaria para la entrega!!
-1. Destroy de producto
+1. Destroy de producto (como alternativa el admin puede activar y descativar)
 
 
 Preugntas para los profes:
