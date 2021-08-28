@@ -5,50 +5,88 @@
 
 <body>
     <%- include('../partials/headercat') %>
-        <main>
-            <section class="sectionLeft">
-                <img src="../image/productsimages/<%=product.image1 %>" id="imagenPrincipal">
-                <div class="imagenesAbajo">
-                    <img src="../image/biciImgA.jpg" id="imagenSecundaria">
-                    <img src="../image/biciImgB.jpg" id="imagenSecundaria">
-                    <img src="../image/biciImgC.jpg" id="imagenSecundaria">
-                    <img src="../image/biciImgD.jpg" id="imagenSecundaria">
+        <div class = "productMain">
+            <div class = "prodcutoShow">
+                <form>
+                    <div class = "sectionTop">
+                <section class = "infoProducto">
+                    <h1><%= product.brand.name  %> <%= product.model %> </h1>
+                    <p id = "desc1">
+                        <%= product.desc1  %> 
+                    </p>
+                    <div class = "infoBici">
+                        <select name = "color">
+                            <option value="">Eliga color</option>
+                            <% for( let i = 0; i < product.colors.length; i++ ) { %>
+                                <option value="<%= product.colors[i].id  %>"><%=product.colors[i].name%></option>    
+                            <% } %>
+                        </select>
+                        <select name = "size">
+                            <option value="">Eliga Tamaño rodado</option>
+                            <% for( let i = 0; i < product.sizes.length; i++ ) { %>
+                                <option value="<%= product.sizes[i].id  %>"><%=product.sizes[i].name%></option>    
+                            <% } %>
+                        </select>
+                    </div>
+                </section>
+                
+                <section class = "imagenesProducto">
+                <div class = "imagenPrincipal">
+                    <img src = "/image/productsimages/<%= product.image1  %> " width="100%">
                 </div>
-                <p class="descripcionProducto">
-                    <%= product.desc1 %>
-                </p>
-            </section>
-            <section class="sectionRight">
-                <h1 class = "precio"> <%= product.brand.name + " " + product.model %></h1>
-                <h2 class ="desc2">  <%= product.desc2 %> </h2>
-                <h3> <%= product.price %>$</h3>
-                    <div class="caracteristicas">
-                        
-                    </div>
-                    <div class="counter">
-                        <span class="down" onClick='decreaseCount(event, this)'>-</span>
-                        <input type="text" value="<%= product.stock %>">
-                        <span class="up"  onClick='increaseCount(event, this)'>+</span>
-                    </div>
-                    <h1 class="cuotas">Hasta <%= product.cuotas %> cuotas sin interes</h1>
+                <div class="imagenesSecundarias">
+                    <img src="../image/biciImgA.jpg" width="100%" >
+                    <img src="../image/biciImgB.jpg" width="100%" >
+                    <img src="../image/biciImgC.jpg" width="100%" >
+                    <img src="../image/biciImgD.jpg" width="100%">
+                </div>
+                </section>
+                </div>
 
+                <div class = "sectionLow">
+                <section class = "caracteristicasBici infoProducto">
+                    <h1 id = "precio"> 
+                       Precio: <%= product.price  %>$
+                    </h1>
+                    <p id= "cualidad">Descuento: <%= product.discount  %>% </p>
+                    <p id= "cualidad">Stock: <%= product.stock %> Unidades</p>
+                    <p id= "cualidad"> <%= product.desc2  %> </p>
 
-                    <form action ="/products/edit/<%=product.id%>" method="GET" >
-                        <button type="submit" class="product-botton">Editar</button>
+                </section>
+                
+
+                <section class = "botonesProducto">
+                    <button id = "comprar"  type = "submit">Agregar al carrito</button>
+                </section>
+
+                </div>
+                </form>
+            </div>
+            <% if (locals.userLogged && locals.userLogged.rolId <=2) { %>
+                <section class = "productoAdmin">
+
+                    <h1>Bienvenidos administrador</h1>
+                    <div class = "botonesAdmin">
+                    <a href = "/products/edit/<%=product.id%>"><button>Editar Producto</button></a>
+                    <form  action= "/products/activate/<%=product.id%>" method = "POST">
+
+                        <% if (product.activate == 1) { %>
+                            <button type="submit" > Disactivate</button>
+                        <% } else { %>
+                            <button type="submit" >Actiavte</button>
+                            <% }  %>
                     </form>
 
-        
-                <form action= "/products/activate/<%=product.id%>" method = "POST">
-                    <% if (product.activate == 1) { %>
-                        <button type="submit" class="product-botton">Disactivate</button>
-                    <% } else { %>
-                        <button type="submit" class="product-button">Actiavte</button>
-                        <% }  %>
-                </form>
+                    </div>
+                </section> 
+                <% } %>
 
+               
+                
+              
 
-            </section>
-        </main>
+         
+            </div>
 
         <%- include('../partials/footer') %>
 </body>

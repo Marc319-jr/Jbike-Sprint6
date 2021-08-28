@@ -32,9 +32,10 @@ const controller = {
     //viste de producto
     show : (req,res) => {
         Product.findByPk(req.params.id, {
-            include: ['brand' , 'colors']
+            include: ['brand' , 'colors' , 'sizes']
         })
         .then(product => {
+            console.log(product);
             res.render('../src/views/products/product' , {product : product})
         })
     },

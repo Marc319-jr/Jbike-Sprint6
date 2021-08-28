@@ -1,0 +1,184 @@
+*{box-sizing: border-box;}
+
+
+.productMain{
+    background-color: white;
+    margin: 40px 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+}
+
+.productMain .infoProducto{
+    background-color: white;
+    margin: 10px;
+    padding: 5px;
+}
+
+.productMain .infoProducto h1{
+font-size: 1.5em;
+font-weight: 500;
+}
+
+
+.productMain .infoProducto #desc1{
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+.productMain .infoProducto .infoBici{
+    margin-top: 20px;
+}
+
+.productMain .infoProducto .infoBici select{
+
+    margin: 10px 0;
+    width: 100%;
+    height: 35px;
+}
+
+
+
+
+
+
+
+
+.productMain .imagenesProducto{
+    background-color: white;
+    border: none;
+
+
+}
+
+
+   
+.productMain .imagenesProducto .imagenPrincipal{
+    display: flex;
+    align-self: center;
+    align-items: center;
+
+    
+
+}
+
+.productMain .imagenesProducto .imagenPrincipal img{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid  rgb(210, 210, 210);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+
+}
+
+
+
+.productMain .imagenesProducto .imagenesSecundarias{
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.productMain .imagenesProducto .imagenesSecundarias img{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid  rgb(210, 210, 210);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+}
+
+
+
+.productMain .caracteristicasBici h1{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.8em;
+}
+
+
+
+
+
+.productMain .botonesProducto{
+    background-color: white;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.productMain .botonesProducto button{
+    background-color: darkred;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.productMain .productoAdmin{
+    background-color: white;
+    margin: 10px;
+    padding: 5px;
+    align-self: center;
+
+}
+
+
+
+.productMain .productoAdmin .botonesAdmin{
+    text-align: center;
+}
+
+.productMain .productoAdmin button{
+    background-color: darkred;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 75%;
+
+}
+
+
+
+@media screen and (min-width:817px)
+{
+
+    .productMain{
+        margin: 60px 30px;
+        
+
+    }
+
+   .productMain .prodcutoShow{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .productMain .prodcutoShow .sectionTop{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .productMain .prodcutoShow .sectionTop .infoProducto{
+        flex: 2 1 70%;
+    }
+
+
+}
+
+@media screen and (min-width:1241px)
+
+{
+    .productMain{
+        margin: 40px 30px;
+        margin-top: 200px;
+
+    }
+}
